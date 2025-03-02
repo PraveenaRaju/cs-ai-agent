@@ -1,0 +1,29 @@
+Product: UltraPhone X  
+Price: $799  
+Features: 6.5" OLED display, 128GB storage, 12MP camera  
+Colors: Black, Silver, Blue  
+Availability: In stock
+
+Product: MegaLaptop Pro  
+Price: $1,299  
+Features: 15.6" Retina display, Intel i7, 16GB RAM, 512GB SSD  
+Colors: Space Gray, Silver  
+Availability: Limited stock
+
+Product: SmartWatch Z  
+Price: $249  
+Features: 1.8" AMOLED display, Heart rate monitor, GPS, 7-day battery life  
+Colors: Black, White, Rose Gold 
+Availability: In stock
+
+Product: TrueSound Wireless Earbuds  
+Price: $129  
+Features: Active Noise Cancelling, 30-hour battery life, Bluetooth 5.2  
+Colors: White, Black  
+Availability: In stock
+
+Product: TabUltra 10  
+Price: $599  
+Features: 10.5" LCD display, 256GB storage, 8MP rear camera, LTE support  
+Colors: Gray, Blue  
+Availability: Pre-order
