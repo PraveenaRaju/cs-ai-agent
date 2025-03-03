@@ -8,13 +8,20 @@ from langchain.chains import RetrievalQA
 from langchain_openai import ChatOpenAI
 from typing import List, Optional
 from langchain.prompts import PromptTemplate
+from dotenv import load_dotenv
+from contextlib import redirect_stderr
+from colorama import init, Fore, Style
+
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 # Configuration constants (could be moved to env vars or config file)
 BASE_DIR = Path("knowledge_base")
 PERSIST_DIRECTORY = "chroma_db_cs-ai-agent"
 EMBEDDING_MODEL = "text-embedding-ada-002"
-LLM_MODEL = "gpt-3.5-turbo"
+LLM_MODEL = "gpt-4"
 SIMILARITY_THRESHOLD = 0.7
 TOP_K = 1
 
@@ -80,6 +87,8 @@ def setup_chain(vector_store: Chroma, query: str, llm: ChatOpenAI,
     except Exception as e:
         print(f"Error setting up chain: {str(e)}")
         return None
+def agent_response(msg: str) -> str:
+    return f"{Fore.CYAN}Agent: {msg}{Style.RESET_ALL}\n"
 
 def run_agent() -> None:
     """Main function to run the e-commerce customer support agent."""
@@ -111,34 +120,36 @@ def run_agent() -> None:
     if not vector_store:
         return
 
-    print("Welcome to Customer Support Agent! How may I assist you today? (Type 'exit' to quit)")
+    print(f"{Fore.YELLOW}Welcome to Customer Support Agent! How may I assist you today? (Type 'exit' to quit){Style.RESET_ALL}")
     while True:
         try:
-            query = input("You: ").strip()
+            query = input(f"You: ").strip()
             if query.lower() == "exit":
-                print("Agent: Thank you for using our Customer Support. Have a great day!")
+
+                print(agent_response("Thank you for using our Customer Support. Have a great day!"))
                 break
                 
             if not query:
-                print("Agent: Hello! How can I assist you today?")
+                print(agent_response("Hello! How can I assist you today?"))
                 continue
                 
             chain = setup_chain(vector_store, query, llm)
             if not chain:
-                print("Agent: I’m sorry, I couldn’t find the information you’re looking for. ")
+                print(agent_response("I’m sorry, I couldn’t find the information you’re looking for."))
                 continue
-                
-            result = chain.invoke({"query": query})
-            response = result['result']
+            with open(os.devnull,'w') as devnull:
+                with redirect_stderr(devnull):
+                    result = chain.invoke({"query": query})
+                    response = result['result']
             
-            print(f"Agent: {response}")
+                    print(agent_response(response))
             
         except KeyboardInterrupt:
-            print("\nAgent: Thank you for using our Customer Support. Goodbye!")
+            print(agent_response("Thank you for using our Customer Support. Goodbye!"))
             break
         except Exception as e:
             # logger.error(f"Error processing query: {str(e)}")
-            print("Agent: I apologize, an error occurred while processing your request. Please try again.")
+            print(agent_response("Agent: I apologize, an error occurred while processing your request. Please try again."))
 
 if __name__ == "__main__":
     run_agent()

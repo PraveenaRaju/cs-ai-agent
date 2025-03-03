@@ -1,17 +1,14 @@
-final questions:
-1. Is smartwatch color available in blue?
-2. what are the features for smart watch z?
-3. if i accidently spill water, will the warranty cover teh repair?
-4. what is the cost of express shipping?
-5. is tabultra 10 available to order?
-6. When can i expect the order to be delivered? 
-7. what is the ram size of MegaLaptop Pro?
+Test cases (questions):
+1. Is accidental water damage covered under the warranty?
+2. Tell me about the specifications of the SmartWatch Z?
+3. How much do I need to pay for express shipping?
+4. What is the memory size of the MegaLaptop Pro?
+5. How long will it take for my order to arrive?
+6. Does tabultra 10 comes in black?
+7. Can I order MegaLaptop Pro?
 
-
-sample questions given in the assessment:
+Test cases (questions given in the assessment):
 1. How much does the UltraPhone X cost?
 2. What are your shipping options?
-
-
 
 
